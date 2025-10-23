@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyNomadCompanion - AI Trip Playbooks for Digital Nomads</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Courier+Prime:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Donation Banner -->
+    <div class="donation-banner">
+        <p>🌍 MyNomadCompanion is free and community-supported. <a href="https://venmo.com/YOUR-VENMO-HANDLE" target="_blank">Support us on Venmo</a></p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>MyNomadCompanion</h1>
+            <p class="tagline">AI-powered trip playbooks for digital nomads</p>
+        </header>
+
+        <!-- Intro Section -->
+        <section class="intro">
+            <h2>// ABOUT_THIS_TOOL</h2>
+            
+            <p>MyNomadCompanion is an AI-powered advisor that empowers travelers to arrive seamlessly at their destination and experience every locality to the fullest through curated strategies that connect them with the languages, locations, and cultural experiences most relevant to their personal interests.</p>
+
+            <p>Built with a foundation in cultural psychology, our playbooks go beyond generic travel guides. Whether you want to escape tourist traps and dive into centuries of high culture, or you're seeking practical guidance for studying abroad, MyNomadCompanion creates personalized plans that maximize your experience while respecting the communities you visit.</p>
+
+            <h3>$ OUR_MISSION</h3>
+            <p>To simplify and enhance the experiences of travelers who want to connect with the localities they visit—empowering global citizens with a culturally-aware mindset in a sustainable, meaningful way.</p>
+
+            <h3>$ OUR_VALUES</h3>
+            <div class="values-grid">
+                <div class="value-item">
+                    <span class="value-label">[ SIMPLICITY ]</span>
+                    <span class="value-desc">Clear, actionable guidance without overwhelming complexity</span>
+                </div>
+                <div class="value-item">
+                    <span class="value-label">[ PRECISION ]</span>
+                    <span class="value-desc">Accurate, reliable information you can trust</span>
+                </div>
+                <div class="value-item">
+                    <span class="value-label">[ REFLECTION ]</span>
+                    <span class="value-desc">Thoughtful engagement with culture, not just consumption</span>
+                </div>
+                <div class="value-item">
+                    <span class="value-label">[ SUSTAINABILITY ]</span>
+                    <span class="value-desc">Travel that respects local environments and economies</span>
+                </div>
+                <div class="value-item">
+                    <span class="value-label">[ DECOLONIALITY ]</span>
+                    <span class="value-desc">Awareness of power dynamics and historical context</span>
+                </div>
+                <div class="value-item">
+                    <span class="value-label">[ ANTIRACISM ]</span>
+                    <span class="value-desc">Actively promoting equity and cultural respect</span>
+                </div>
+            </div>
+
+            <h3>$ RESPONSIBLE_TRAVEL</h3>
+            <p>Travel is a privilege that comes with responsibility. We encourage all users to:</p>
+            <ul class="responsibility-list">
+                <li><span class="bullet">></span> Learn basic phrases in local languages before arriving</li>
+                <li><span class="bullet">></span> Support local businesses and avoid exploitative tourism</li>
+                <li><span class="bullet">></span> Respect cultural norms, sacred sites, and community spaces</li>
+                <li><span class="bullet">></span> Be mindful of your environmental impact</li>
+                <li><span class="bullet">></span> Engage with curiosity and humility, not entitlement</li>
+                <li><span class="bullet">></span> Consider how your presence affects housing costs and local resources</li>
+            </ul>
+
+            <div class="disclaimer-box">
+                <p><strong>[!] IMPORTANT_DISCLAIMER</strong></p>
+                <p>MyNomadCompanion is not a visa or immigration agency, nor does it have relationships with embassies or government bodies. We cannot guarantee safety or success when traveling. This tool exists to make legal, ethical, culturally-aware travel more accessible and enjoyable. Always verify visa requirements, legal obligations, and safety conditions with official sources before traveling.</p>
+            </div>
+
+            <p class="limit-notice">📊 Free community tool: 5 playbooks per month per user</p>
+        </section>
+
+        <!-- Form Section -->
+        <section class="form-section">
+            <form id="playbook-form">
+                <!-- Destination Selection -->
+                <div class="form-group">
+                    <label for="destination">Select Destination</label>
+                    <select id="destination" required>
+                        <option value="">Choose a destination...</option>
+                        <optgroup label="Europe">
+                            <option value="lisbon">Lisbon, Portugal</option>
+                            <option value="porto">Porto, Portugal</option>
+                            <option value="barcelona">Barcelona, Spain</option>
+                            <option value="valencia">Valencia, Spain</option>
+                            <option value="berlin">Berlin, Germany</option>
+                            <option value="prague">Prague, Czech Republic</option>
+                            <option value="tallinn">Tallinn, Estonia</option>
+                            <option value="budapest">Budapest, Hungary</option>
+                        </optgroup>
+                        <optgroup label="Asia">
+                            <option value="chiang-mai">Chiang Mai, Thailand</option>
+                            <option value="bangkok">Bangkok, Thailand</option>
+                            <option value="bali">Bali (Canggu/Ubud), Indonesia</option>
+                            <option value="ho-chi-minh">Ho Chi Minh City, Vietnam</option>
+                            <option value="taipei">Taipei, Taiwan</option>
+                            <option value="tbilisi">Tbilisi, Georgia</option>
+                            <option value="kuala-lumpur">Kuala Lumpur, Malaysia</option>
+                            <option value="da-nang">Da Nang, Vietnam</option>
+                        </optgroup>
+                        <optgroup label="Americas">
+                            <option value="mexico-city">Mexico City, Mexico</option>
+                            <option value="playa-del-carmen">Playa del Carmen, Mexico</option>
+                            <option value="medellin">Medellín, Colombia</option>
+                            <option value="buenos-aires">Buenos Aires, Argentina</option>
+                            <option value="san-jose-cr">San José, Costa Rica</option>
+                            <option value="florianopolis">Florianópolis, Brazil</option>
+                        </optgroup>
+                        <optgroup label="Other">
+                            <option value="dubai">Dubai, UAE</option>
+                            <option value="cape-town">Cape Town, South Africa</option>
+                            <option value="istanbul">Istanbul, Turkey</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!-- Trip Duration -->
+                <div class="form-group">
+                    <label for="duration">Trip Duration</label>
+                    <select id="duration" required>
+                        <option value="">Select duration...</option>
+                        <option value="1-month">1 Month</option>
+                        <option value="2-3-months">2-3 Months</option>
+                        <option value="3-6-months">3-6 Months</option>
+                        <option value="6-12-months">6-12 Months</option>
+                        <option value="1-year-plus">1+ Year</option>
+                    </select>
+                </div>
+
+                <!-- Budget Tier -->
+                <div class="form-group">
+                    <label for="budget">Monthly Budget</label>
+                    <select id="budget" required>
+                        <option value="">Select budget...</option>
+                        <option value="budget">Budget ($800-1500/month)</option>
+                        <option value="moderate">Moderate ($1500-2500/month)</option>
+                        <option value="comfortable">Comfortable ($2500-4000/month)</option>
+                        <option value="luxury">Luxury ($4000+/month)</option>
+                    </select>
+                </div>
+
+                <!-- Work Situation -->
+                <div class="form-group">
+                    <label for="work-situation">Work Situation</label>
+                    <select id="work-situation" required>
+                        <option value="">Select work situation...</option>
+                        <option value="full-time-remote">Full-time Remote Employee</option>
+                        <option value="freelancer">Freelancer/Contractor</option>
+                        <option value="business-owner">Business Owner</option>
+                        <option value="student">International Student</option>
+                        <option value="sabbatical">Sabbatical/Career Break</option>
+                    </select>
+                </div>
+
+                <!-- Interests -->
+                <div class="form-group">
+                    <label for="interests">Primary Interests (select up to 3)</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="interests" value="culture"> Culture & History</label>
+                        <label><input type="checkbox" name="interests" value="food"> Food & Culinary</label>
+                        <label><input type="checkbox" name="interests" value="nature"> Nature & Outdoors</label>
+                        <label><input type="checkbox" name="interests" value="nightlife"> Nightlife & Social Scene</label>
+                        <label><input type="checkbox" name="interests" value="fitness"> Fitness & Wellness</label>
+                        <label><input type="checkbox" name="interests" value="arts"> Arts & Creative Scene</label>
+                        <label><input type="checkbox" name="interests" value="tech"> Tech Community</label>
+                        <label><input type="checkbox" name="interests" value="beach"> Beach & Water Activities</label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="generate-btn" class="btn-primary">Generate My Playbook</button>
+                
+                <!-- Rate Limit Message -->
+                <p id="rate-limit-message" class="rate-limit-message" style="display: none;"></p>
+            </form>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Generating your personalized playbook...</p>
+            <p class="loading-subtext">This may take 30-60 seconds</p>
+        </div>
+
+        <!-- Results Section -->
+        <section id="results" class="results" style="display: none;">
+            <h2>Your Trip Playbook</h2>
+            <div id="playbook-content" class="playbook-content"></div>
+            <div class="action-buttons">
+                <button id="download-btn" class="btn-primary">Download Markdown</button>
+                <button id="copy-btn" class="btn-secondary">Copy to Clipboard</button>
+                <button id="new-playbook-btn" class="btn-secondary">Generate Another</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>MyNomadCompanion is not a visa or immigration agency. All information is for guidance only.</p>
+        <p>Built with ❤️ for the digital nomad community | <a href="https://github.com/YOUR-GITHUB/mynomadcompanion" target="_blank">View on GitHub</a></p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
