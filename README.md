@@ -100,7 +100,7 @@ This is a solo project, but suggestions are welcome! Open an issue or reach out.
 
 If you find this tool valuable, consider supporting development:
 
-💙 [Venmo: @YOUR-HANDLE]
+💙 [Venmo: @LukeGriles]
 
 ## License
 
