@@ -117,7 +117,7 @@ Create a comprehensive trip playbook for a digital nomad planning to visit ${des
 
 **Required Sections:**
 1. **Overview** - Brief intro to the destination and why it's great for digital nomads
-2. **Pre-Departure Checklist** - Personalized checklist based on duration and work situation
+2. **Pre-Departure Checklist** - Personalized checklist based on duration and work situation - style this as an actual markdown checklist
 3. **Visa & Legal Requirements** - Entry requirements, visa options, stay duration limits
 4. **Budget Breakdown** - Detailed monthly costs (accommodation, food, coworking, transport, entertainment) for their budget tier
 5. **Accommodation Recommendations** - Specific neighborhoods and types of housing
@@ -152,7 +152,7 @@ Make it specific, actionable, and tailored to their interests. Include actual pl
           }],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 8000,
+            maxOutputTokens: 14000,
           }
         })
       });

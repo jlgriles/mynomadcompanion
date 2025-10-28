@@ -2,21 +2,21 @@
 
 Use this as a quick reference while following SETUP.md
 
-## ☐ Phase 1: OpenAI Setup (5 minutes)
-- [ ] Create OpenAI account at platform.openai.com
-- [ ] Generate API key
-- [ ] Set hard limit to $20/month
-- [ ] Set soft limit to $15/month
-- [ ] Add payment method
+## ☐ Phase 1: Google Gemini Setup (5 minutes)
+- [ ] Go to aistudio.google.com
+- [ ] Sign in with Google account
+- [ ] Click "Get API key"
+- [ ] Create API key
 - [ ] Copy API key to safe location
+- [ ] No credit card needed!
 
 ## ☐ Phase 2: Cloudflare Worker (15 minutes)
 - [ ] Create Cloudflare account
 - [ ] Install wrangler CLI: `npm install -g wrangler`
 - [ ] Login: `wrangler login`
-- [ ] Create KV namespace: `wrangler kv:namespace create "RATE_LIMIT"`
+- [ ] Create KV namespace: `wrangler kv namespace create "RATE_LIMIT"` (note: space, not colon)
 - [ ] Copy KV namespace ID into wrangler.toml
-- [ ] Add API key secret: `wrangler secret put OPENAI_API_KEY`
+- [ ] Add API key secret: `wrangler secret put GEMINI_API_KEY`
 - [ ] Deploy worker: `wrangler deploy`
 - [ ] Save worker URL (looks like: https://mynomad-worker.YOUR-NAME.workers.dev)
 - [ ] Test with curl command from SETUP.md
@@ -44,13 +44,13 @@ Use this as a quick reference while following SETUP.md
 - [ ] Test copy to clipboard
 - [ ] Generate 5 playbooks to test rate limiting
 - [ ] Verify 6th attempt is blocked
-- [ ] Check OpenAI usage dashboard
+- [ ] Optional: Check Google AI Studio usage dashboard
 
 ## ☐ Phase 5: Launch (Optional)
 - [ ] Update README.md with your live URL
 - [ ] Share on social media
 - [ ] Post in r/digitalnomad (follow community rules)
-- [ ] Monitor OpenAI costs daily for first week
+- [ ] No need to monitor costs - it's free!
 
 ---
 
@@ -60,9 +60,10 @@ Use this as a quick reference while following SETUP.md
 - Redeploy: `wrangler deploy`
 - Check worker logs: `wrangler tail`
 
-**OpenAI errors?**
+**Gemini API errors?**
 - Verify API key: `wrangler secret list`
-- Check OpenAI usage limits
+- Check Google AI Studio for valid key
+- Very unlikely to hit rate limits
 
 **Rate limiting not working?**
 - Verify KV namespace ID in wrangler.toml
@@ -73,16 +74,35 @@ Use this as a quick reference while following SETUP.md
 - Check Settings → Pages shows green checkmark
 - Clear browser cache
 
+**"Service temporarily unavailable" message?**
+- Daily free tier limit reached (very unlikely)
+- Resets at midnight UTC
+- Check if you have 300+ users per day
+
 ---
 
-## Cost Monitoring
+## Free Tier Benefits
 
-Week 1: Check daily
-- Expected: $0.50-1.00/day for testing
-- Alert if over $2/day
+✅ No cost monitoring needed
+✅ No credit card required
+✅ No surprise bills
+✅ 1,500 requests/day capacity
+✅ Can support 300+ users daily
 
-Week 2+: Check weekly
-- Expected: $10-15/month
-- Alert if over $25/month
+Week 1: Just check it works!
+- Expected: 5-50 test playbooks
+- No costs to track
 
-Set calendar reminders!
+Week 2+: Occasional check
+- Make sure service is running
+- Check user feedback
+- No cost monitoring needed
+
+---
+
+## Maintenance Notes
+
+- **Monthly:** Quick test that site works
+- **No cost tracking needed** - It's free!
+- **Optional:** Check Cloudflare analytics for traffic
+- **Optional:** Check Google AI Studio usage (just curiosity)

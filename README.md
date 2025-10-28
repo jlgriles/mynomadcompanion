@@ -2,7 +2,7 @@
 
 AI-powered trip playbooks for digital nomads. Generate comprehensive, personalized guides for 25+ destinations worldwide using Google's free Gemini API.
 
-🌍 **Live Site:** [Add your GitHub Pages URL here]
+🌍 **Live Site:** https://mynomadcompanion.xyz
 
 💚 **Completely Free** - No credit card required, powered by Google Gemini's free tier
 
@@ -114,7 +114,7 @@ This is a solo project, but suggestions are welcome! Open an issue or reach out.
 
 If you find this tool valuable, consider supporting development:
 
-💙 [Venmo: @YOUR-HANDLE]
+💙 [Venmo: @LukeGriles]
 
 ## License
 
