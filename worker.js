@@ -121,11 +121,11 @@ Create a comprehensive trip playbook for a digital nomad planning to visit ${des
 3. **Visa & Legal Requirements** - Entry requirements, visa options, stay duration limits - keep this brief
 4. **Budget Breakdown** - Overview of monthly costs (accommodation, food, coworking, transport, entertainment) for their budget tier
 5. **Accommodation Recommendations** - Specific neighborhoods and types of housing
-6. **Work Setup** - Best coworking spaces, cafes with wifi, time zone considerations
+6. **Work Setup** - Best coworking spaces, cafes with wifi, time zone considerations - keep this very brief
 7. **Language Basics** - 30-35 essential phrases with pronunciation guides
-8. **Cultural Preparation** - 2-3 book recommendations, 2-3 movies/shows, key customs and etiquette
-9. **Transportation Guide** - Apps, metro/bus info, getting around, bike rentals
-10. **Neighborhood Guide** - Best areas to live, eat, and explore based on their interests
+8. **Cultural Preparation** - 2 book recommendations, 1-2 movies/shows, key customs and etiquette
+9. **Transportation Guide** - Apps, metro/bus info, getting around, bike rentals - bullet points only
+10. **Neighborhood Guide** - Best areas to live, eat, and explore based on their interests - keep this brief
 11. **Essential Resources** - Embassy info, hospitals, pharmacies, emergency contacts, and specific safety tips, health precautions, insurance recommendations
 12. **Sample Itinerary** - First week breakdown and monthly rhythm suggestions - keep this very high level
 
@@ -150,7 +150,7 @@ Make it specific, actionable, and tailored to their interests. Include actual pl
           }],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 14000,
+            maxOutputTokens: 20000,
           }
         })
       });
