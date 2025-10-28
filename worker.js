@@ -127,7 +127,7 @@ Create a comprehensive trip playbook for a digital nomad planning to visit ${des
 9. **Transportation Guide** - Apps, metro/bus info, getting around, bike rentals - bullet points only
 10. **Neighborhood Guide** - Best areas to live, eat, and explore based on their interests - keep this brief
 11. **Essential Resources** - Embassy info, hospitals, pharmacies, emergency contacts, and specific safety tips, health precautions, insurance recommendations
-12. **Sample Itinerary** - First week breakdown and monthly rhythm suggestions - keep this very high level
+12. **Sample Itinerary** - First 2 days breakdown and weekly rhythm suggestions - keep this very high brief
 
 Make it specific, actionable, and tailored to their interests. Include actual place names, specific neighborhoods, and real recommendations. Format in clean Markdown with headers, bullet points, and bold text for emphasis.`;
 
@@ -150,7 +150,7 @@ Make it specific, actionable, and tailored to their interests. Include actual pl
           }],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 20000,
+            maxOutputTokens: 22000,
           }
         })
       });
