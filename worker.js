@@ -126,10 +126,8 @@ Create a comprehensive trip playbook for a digital nomad planning to visit ${des
 8. **Cultural Preparation** - 2-3 book recommendations, 2-3 movies/shows, key customs and etiquette
 9. **Transportation Guide** - Apps, metro/bus info, getting around, bike rentals
 10. **Neighborhood Guide** - Best areas to live, eat, and explore based on their interests
-11. **Essential Resources** - Embassy info, hospitals, pharmacies, emergency contacts
-12. **Safety & Health** - Specific safety tips, health precautions, insurance recommendations
-13. **Local Tips** - Insider knowledge, hidden gems, things locals wish tourists knew
-14. **Sample Itinerary** - First week breakdown and monthly rhythm suggestions - keep this very high level
+11. **Essential Resources** - Embassy info, hospitals, pharmacies, emergency contacts, and specific safety tips, health precautions, insurance recommendations
+12. **Sample Itinerary** - First week breakdown and monthly rhythm suggestions - keep this very high level
 
 Make it specific, actionable, and tailored to their interests. Include actual place names, specific neighborhoods, and real recommendations. Format in clean Markdown with headers, bullet points, and bold text for emphasis.`;
 
