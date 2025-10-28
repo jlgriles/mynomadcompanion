@@ -118,18 +118,18 @@ Create a comprehensive trip playbook for a digital nomad planning to visit ${des
 **Required Sections:**
 1. **Overview** - Brief intro to the destination and why it's great for digital nomads
 2. **Pre-Departure Checklist** - Personalized checklist based on duration and work situation - style this as an actual markdown checklist
-3. **Visa & Legal Requirements** - Entry requirements, visa options, stay duration limits
-4. **Budget Breakdown** - Detailed monthly costs (accommodation, food, coworking, transport, entertainment) for their budget tier
+3. **Visa & Legal Requirements** - Entry requirements, visa options, stay duration limits - keep this brief
+4. **Budget Breakdown** - Overview of monthly costs (accommodation, food, coworking, transport, entertainment) for their budget tier
 5. **Accommodation Recommendations** - Specific neighborhoods and types of housing
 6. **Work Setup** - Best coworking spaces, cafes with wifi, time zone considerations
-7. **Language Basics** - 30-50 essential phrases with pronunciation guides
+7. **Language Basics** - 30-35 essential phrases with pronunciation guides
 8. **Cultural Preparation** - 2-3 book recommendations, 2-3 movies/shows, key customs and etiquette
 9. **Transportation Guide** - Apps, metro/bus info, getting around, bike rentals
 10. **Neighborhood Guide** - Best areas to live, eat, and explore based on their interests
 11. **Essential Resources** - Embassy info, hospitals, pharmacies, emergency contacts
 12. **Safety & Health** - Specific safety tips, health precautions, insurance recommendations
 13. **Local Tips** - Insider knowledge, hidden gems, things locals wish tourists knew
-14. **Sample Itinerary** - First week breakdown and monthly rhythm suggestions
+14. **Sample Itinerary** - First week breakdown and monthly rhythm suggestions - keep this very high level
 
 Make it specific, actionable, and tailored to their interests. Include actual place names, specific neighborhoods, and real recommendations. Format in clean Markdown with headers, bullet points, and bold text for emphasis.`;
 
