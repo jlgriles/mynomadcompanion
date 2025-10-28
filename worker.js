@@ -150,7 +150,7 @@ Make it specific, actionable, and tailored to their interests. Include actual pl
           }],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 22000,
+            maxOutputTokens: 10000,
           }
         })
       });
