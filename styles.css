@@ -218,7 +218,7 @@ header h1::after {
 }
 
 .intro p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.8;
     margin-bottom: 16px;
     color: var(--text-secondary);
@@ -469,11 +469,11 @@ select:focus {
 }
 
 .btn-primary::before {
-    content: '> ';
+    content: '>';
 }
 
 .btn-primary::after {
-    content: ' <';
+    content: '<';
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -500,12 +500,12 @@ select:focus {
 }
 
 .btn-secondary::before {
-    content: '[ ';
+    content: '[';
     color: var(--text-secondary);
 }
 
 .btn-secondary::after {
-    content: ' ]';
+    content: ']';
     color: var(--text-secondary);
 }
 

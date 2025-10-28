@@ -1,5 +1,5 @@
 // Cloudflare Worker for MyNomadCompanion
-// This handles OpenAI API calls and rate limiting
+// This handles Google Gemini API calls and rate limiting
 
 // Configuration
 const MAX_REQUESTS_PER_IP = 5;
@@ -57,8 +57,8 @@ export default {
         });
       }
 
-      // Generate playbook using OpenAI
-      const playbook = await generatePlaybook(env.OPENAI_API_KEY, {
+      // Generate playbook using Google Gemini
+      const playbook = await generatePlaybook(env.GEMINI_API_KEY, {
         destination,
         duration,
         budget,
@@ -81,6 +81,17 @@ export default {
 
     } catch (error) {
       console.error('Error:', error);
+      
+      // Handle Gemini API quota exceeded
+      if (error.message.includes('quota') || error.message.includes('429')) {
+        return new Response(JSON.stringify({ 
+          error: 'Service temporarily unavailable. The free API quota has been reached. Please try again tomorrow.' 
+        }), {
+          status: 503,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+      
       return new Response(JSON.stringify({ 
         error: 'Internal server error. Please try again.' 
       }), {
@@ -91,13 +102,13 @@ export default {
   }
 };
 
-// Generate playbook using OpenAI
+// Generate playbook using Google Gemini
 async function generatePlaybook(apiKey, userData) {
   const { destination, duration, budget, workSituation, interests } = userData;
 
-  const systemPrompt = `You are an expert travel advisor specializing in digital nomad trips. Create comprehensive, actionable trip playbooks that combine logistics, cultural immersion, and practical advice. Format your response in clean Markdown with clear sections and bullet points.`;
+  const prompt = `You are an expert travel advisor specializing in digital nomad trips. Create comprehensive, actionable trip playbooks that combine logistics, cultural immersion, and practical advice.
 
-  const userPrompt = `Create a comprehensive trip playbook for a digital nomad planning to visit ${destination} for ${duration}.
+Create a comprehensive trip playbook for a digital nomad planning to visit ${destination} for ${duration}.
 
 **User Profile:**
 - Budget: ${budget}
@@ -120,31 +131,64 @@ async function generatePlaybook(apiKey, userData) {
 13. **Local Tips** - Insider knowledge, hidden gems, things locals wish tourists knew
 14. **Sample Itinerary** - First week breakdown and monthly rhythm suggestions
 
-Make it specific, actionable, and tailored to their interests. Include actual place names, specific neighborhoods, and real recommendations. Format in clear Markdown with headers, bullet points, and bold text for emphasis.`;
+Make it specific, actionable, and tailored to their interests. Include actual place names, specific neighborhoods, and real recommendations. Format in clean Markdown with headers, bullet points, and bold text for emphasis.`;
 
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt }
-      ],
-      temperature: 0.7,
-      max_tokens: 4000
-    })
-  });
+  // Retry logic for 503 errors
+  const maxRetries = 3;
+  let lastError;
 
-  if (!response.ok) {
-    const error = await response.text();
-    console.error('OpenAI API error:', error);
-    throw new Error('Failed to generate playbook from OpenAI');
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: prompt
+            }]
+          }],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 8000,
+          }
+        })
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('Gemini API error:', error);
+        
+        // Parse error to check if it's 503
+        try {
+          const errorJson = JSON.parse(error);
+          if (errorJson.error && errorJson.error.code === 503 && attempt < maxRetries) {
+            console.log(`Attempt ${attempt}/${maxRetries} failed with 503, retrying in ${attempt * 2} seconds...`);
+            await new Promise(resolve => setTimeout(resolve, attempt * 2000)); // Wait 2, 4, 6 seconds
+            lastError = error;
+            continue; // Retry
+          }
+        } catch (e) {
+          // Not JSON, just throw
+        }
+        
+        throw new Error('Failed to generate playbook from Gemini API');
+      }
+
+      const data = await response.json();
+      return data.candidates[0].content.parts[0].text;
+      
+    } catch (error) {
+      if (attempt === maxRetries) {
+        throw error;
+      }
+      lastError = error;
+      console.log(`Attempt ${attempt}/${maxRetries} failed, retrying...`);
+      await new Promise(resolve => setTimeout(resolve, attempt * 2000));
+    }
   }
-
-  const data = await response.json();
-  return data.choices[0].message.content;
+  
+  throw lastError || new Error('Failed after retries');
 }

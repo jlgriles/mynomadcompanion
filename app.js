@@ -1,6 +1,6 @@
 // Configuration
 const CONFIG = {
-    WORKER_URL: 'https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev/generate',
+    WORKER_URL: 'https://mynomad-worker.mynomadcompanion.workers.dev/generate',
     MAX_INTERESTS: 3
 };
 

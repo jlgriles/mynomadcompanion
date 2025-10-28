@@ -4,37 +4,33 @@ If you're new to web development, follow this simplified guide. For detailed ins
 
 ## What You'll Need
 
-- 🖥️ A computer (Mac, Windows, or Linux)
-- 💳 A credit card (for OpenAI - costs ~$15/month)
-- ⏱️ 1 hour of time
-- 🧠 Patience (it's easier than it looks!)
+- A computer (Mac, Windows, or Linux)
+- A Google account (for Gemini API)
+- 1 hour of time
+- Patience (it's easier than it looks!)
+
+**No credit card needed!** This is completely free.
 
 ---
 
-## Step 1: Get an OpenAI Account (10 minutes)
+## Step 1: Get a Google Gemini API Key (5 minutes)
 
-### What is OpenAI?
-It's the company that makes ChatGPT. We use their AI to generate travel playbooks.
+### What is Google Gemini?
+It's Google's AI model, similar to ChatGPT. We use it to generate travel playbooks.
 
 ### Steps:
-1. Go to https://platform.openai.com
-2. Click "Sign up" (top right)
-3. Create account with email
-4. Verify your email
-5. Click your profile icon → "View API keys"
-6. Click "+ Create new secret key"
-7. Name it "MyNomadCompanion"
-8. **Copy the key** (looks like: sk-proj-abc123...)
-9. **Save it in a safe place** (Notes app, password manager)
-10. Add your credit card in Settings → Billing
+1. Go to https://aistudio.google.com
+2. Sign in with your Google account
+3. Click "Get API key" in the left sidebar
+4. Click "+ Create API key"
+5. Select "Create API key in new project"
+6. **Copy the key** (looks like: AIzaSyAbc123...)
+7. **Save it in a safe place** (Notes app, password manager)
 
-### Set Spending Limits (IMPORTANT!):
-1. Settings → Limits
-2. Hard limit: $20/month
-3. Soft limit: $15/month
-4. Save
-
-**Cost:** You'll pay about $15/month once people use your site.
+**No credit card required!** Free tier includes:
+- 15 requests per minute
+- 1,500 requests per day
+- Completely free forever
 
 ---
 
@@ -91,7 +87,7 @@ Open Terminal/Command Prompt:
 ```
 wrangler login
 ```
-Your browser opens → Click "Allow"
+Your browser opens - Click "Allow"
 
 **3.3 Create Storage:**
 In Terminal/Command Prompt:
@@ -112,12 +108,12 @@ Save it somewhere!
 4. Replace YOUR_KV_NAMESPACE_ID with the ID you copied
 5. Save and close
 
-**3.5 Add OpenAI Key:**
+**3.5 Add Gemini Key:**
 In Terminal/Command Prompt:
 ```
-wrangler secret put OPENAI_API_KEY
+wrangler secret put GEMINI_API_KEY
 ```
-When asked, paste your OpenAI API key (from Step 1)
+When asked, paste your Gemini API key (from Step 1)
 
 **3.6 Deploy:**
 Navigate to your project folder:
@@ -221,11 +217,14 @@ Save all files!
 
 ---
 
-## Check Your Costs
+## Check Your Free Tier Status (Optional)
 
-1. Go to https://platform.openai.com/usage
-2. You should see about $1.50-2.00 used (5 test playbooks)
-3. Set a reminder to check this weekly
+1. Go to https://aistudio.google.com
+2. Check your API usage dashboard
+3. You should see 5 requests used
+4. Free tier: 1,500 per day - you're nowhere close!
+
+**No cost monitoring needed!** It's completely free.
 
 ---
 
@@ -235,18 +234,23 @@ Save all files!
 - Make sure you updated app.js with your real Cloudflare URL
 - Try redeploying: `wrangler deploy`
 
-### "OpenAI API error"
+### "Gemini API error"
 - Check your API key in Cloudflare:
   ```
   wrangler secret list
   ```
-  Should show: OPENAI_API_KEY
-- Make sure you added a payment method on OpenAI
+  Should show: GEMINI_API_KEY
+- Make sure you copied the key correctly from Google AI Studio
 
 ### "GitHub Pages not loading"
 - Wait 10 minutes (it can be slow first time)
-- Check Settings → Pages shows green checkmark
+- Check Settings > Pages shows green checkmark
 - Try incognito/private browsing
+
+### "Service temporarily unavailable"
+- This means the daily free tier limit was reached (1,500 requests)
+- Very unlikely with your rate limiting
+- Resets at midnight UTC
 
 ### "Can't find Terminal/Command Prompt"
 - **Mac:** Press Cmd+Space, type "Terminal"
@@ -261,20 +265,27 @@ Save all files!
 
 ## You're Done! 🎉
 
-Your site is live and generating AI-powered travel playbooks!
+Your site is live and generating AI-powered travel playbooks - completely free!
 
 ### What's Next?
 
 1. Share your site with friends
 2. Post in digital nomad Facebook groups
 3. Tweet about it with #digitalnomad
-4. Monitor costs daily for first week
+4. No need to monitor costs - it's free!
 5. Gather feedback and improve
 
 ### Remember:
-- Check OpenAI costs weekly
-- Your rate limit protects against abuse
-- Each playbook costs ~$0.30
-- You can handle about 50 users/month at $15
+- **Completely free** - no credit card ever needed
+- Your rate limit (5/month per user) protects against abuse
+- Daily limit: 1,500 playbooks (you probably won't hit this)
+- Can support 300+ users per day
+- Resets daily at midnight UTC
+
+### Free Tier Advantages:
+- No surprise bills
+- No need to set spending limits
+- No cost monitoring required
+- Just works!
 
 Good luck! 🌍✈️

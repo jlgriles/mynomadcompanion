@@ -1,9 +1,14 @@
 # MyNomadCompanion - Setup Instructions
 
 ## Overview
-This guide will help you deploy MyNomadCompanion, a static site hosted on GitHub Pages with a Cloudflare Worker backend for AI-powered playbook generation.
+This guide will help you deploy MyNomadCompanion, a static site hosted on GitHub Pages with a Cloudflare Worker backend for AI-powered playbook generation using Google's free Gemini API.
 
-**Cost Estimate:** ~$15/month (OpenAI API costs only)
+**Cost Estimate:** $0/month (completely free using Gemini's free tier)
+
+**Free Tier Limits:**
+- 15 requests per minute
+- 1,500 requests per day
+- No credit card required
 
 ---
 
@@ -11,39 +16,37 @@ This guide will help you deploy MyNomadCompanion, a static site hosted on GitHub
 
 1. GitHub account
 2. Cloudflare account (free tier)
-3. OpenAI API account
+3. Google AI Studio account (free, no credit card needed)
 4. Basic command line knowledge
 
 ---
 
-## Part 1: OpenAI API Setup
+## Part 1: Google Gemini API Setup
 
-### 1.1 Create OpenAI Account & Get API Key
+### 1.1 Create Google AI Studio Account & Get API Key
 
-1. Go to [platform.openai.com](https://platform.openai.com)
-2. Sign up or log in
-3. Navigate to **API Keys** section (left sidebar)
-4. Click **"Create new secret key"**
-5. Give it a name (e.g., "MyNomadCompanion")
+1. Go to [aistudio.google.com](https://aistudio.google.com)
+2. Sign in with your Google account
+3. Click **"Get API key"** in the left sidebar
+4. Click **"Create API key"**
+5. Select **"Create API key in new project"**
 6. **IMPORTANT:** Copy the key immediately - you won't see it again
 7. Save it securely (you'll need it in Part 2)
 
-### 1.2 Set Usage Limits (Cost Control)
+**No credit card required!** The free tier includes:
+- 15 requests per minute (RPM)
+- 1,500 requests per day (RPD)
+- Gemini 1.5 Flash model
 
-1. Go to **Settings** → **Limits**
-2. Set **Hard limit:** $20/month
-3. Set **Soft limit:** $15/month (you'll get email notification)
-4. Set up email alerts for usage
+### 1.2 Understanding Free Tier Limits
 
-### 1.3 Add Payment Method
+With the current rate limiting (5 playbooks per user per month):
+- **You can support:** ~300 users per day (1,500 / 5)
+- **Monthly capacity:** ~45,000 playbook generations
+- **Cost:** $0
 
-1. Go to **Settings** → **Billing**
-2. Add a payment method (credit/debit card)
-3. Start with $5-10 credit to test
-
-**Expected Usage:**
-- ~50 playbooks/month × $0.30 each = $15/month
-- Each playbook costs ~$0.25-0.35 using GPT-4o-mini
+**What happens if limits are reached?**
+The service will gracefully stop working and display: "Service temporarily unavailable. Please try again tomorrow." This resets daily at midnight UTC.
 
 ---
 
@@ -81,9 +84,11 @@ wrangler kv:namespace create "RATE_LIMIT"
 
 Copy the ID shown in the output (looks like: `abcd1234efgh5678...`)
 
-### 2.5 Create wrangler.toml Configuration
+### 2.5 Update wrangler.toml Configuration
 
-In your `mynomadcompanion` folder, create `wrangler.toml`:
+In your `mynomadcompanion` folder, edit `wrangler.toml`:
+
+Replace `YOUR_KV_NAMESPACE_ID` with the ID from step 2.4:
 
 ```toml
 name = "mynomad-worker"
@@ -91,22 +96,17 @@ main = "worker.js"
 compatibility_date = "2024-01-01"
 
 kv_namespaces = [
-  { binding = "RATE_LIMIT", id = "YOUR_KV_NAMESPACE_ID_HERE" }
+  { binding = "RATE_LIMIT", id = "YOUR_ACTUAL_ID_HERE" }
 ]
-
-[vars]
-# No variables here - we'll use secrets for API key
 ```
 
-Replace `YOUR_KV_NAMESPACE_ID_HERE` with the ID from step 2.4.
-
-### 2.6 Add OpenAI API Key as Secret
+### 2.6 Add Gemini API Key as Secret
 
 ```bash
-wrangler secret put OPENAI_API_KEY
+wrangler secret put GEMINI_API_KEY
 ```
 
-When prompted, paste your OpenAI API key (from Part 1.1).
+When prompted, paste your Gemini API key (from Part 1.1).
 
 ### 2.7 Deploy Worker
 
@@ -228,10 +228,11 @@ Visit the URL to test your site!
 1. Generate 5 playbooks from the same device
 2. On the 6th attempt, you should see: "You've reached your monthly limit"
 
-### 4.3 Monitor Costs
+### 4.3 Monitor Usage (Optional)
 
-1. Check OpenAI usage: [platform.openai.com/usage](https://platform.openai.com/usage)
-2. After 5 test generations, you should see ~$1.50-2.00 used
+1. Check Google AI Studio: [aistudio.google.com](https://aistudio.google.com)
+2. View usage in your API dashboard
+3. The free tier limits are very generous - you likely won't hit them
 
 ---
 
@@ -259,7 +260,7 @@ In your domain registrar:
 
 ### 5.3 Configure GitHub Pages
 
-1. Go to repository Settings → Pages
+1. Go to repository Settings > Pages
 2. Under "Custom domain", enter your domain
 3. Click Save
 4. Wait for DNS check (can take 24-48 hours)
@@ -274,36 +275,39 @@ In your domain registrar:
 - Ensure worker is deployed: `wrangler deploy`
 
 ### "API key not found" error
-- Re-add secret: `wrangler secret put OPENAI_API_KEY`
+- Re-add secret: `wrangler secret put GEMINI_API_KEY`
 - Redeploy: `wrangler deploy`
 
 ### Rate limiting not working
 - Verify KV namespace ID in `wrangler.toml`
-- Check Cloudflare dashboard: Workers & Pages → KV
+- Check Cloudflare dashboard: Workers & Pages > KV
 
-### OpenAI errors
-- Check API key is valid in OpenAI dashboard
-- Verify you have credits/payment method set up
-- Check usage limits aren't exceeded
+### Gemini API errors
+- Check API key is valid in Google AI Studio dashboard
+- Verify you haven't exceeded free tier limits (very unlikely)
+- If you see "quota exceeded", wait until tomorrow (resets daily)
 
 ### GitHub Pages not loading
 - Wait 5-10 minutes after enabling
-- Check Settings → Pages shows "Your site is live"
+- Check Settings > Pages shows "Your site is live"
 - Try incognito/private browsing mode
+
+### "Service temporarily unavailable" message
+- This means the Gemini free tier daily limit was reached
+- Wait until tomorrow (resets at midnight UTC)
+- Very unlikely with 5 playbooks/user limit
 
 ---
 
 ## Maintenance
 
 ### Monthly Tasks
-1. Check OpenAI costs (should be ~$15/month)
-2. Monitor Cloudflare worker analytics
-3. Update destination data if needed
+1. Check site is working (quick test)
+2. Optional: Check Cloudflare worker analytics
+3. Optional: Update destination data if needed
 
-### When Costs Spike
-1. Check Cloudflare analytics for unusual traffic
-2. Review OpenAI usage dashboard
-3. Consider lowering MAX_REQUESTS_PER_IP in worker.js
+### No Cost Monitoring Needed!
+Unlike OpenAI, you don't need to worry about costs since it's completely free.
 
 ### Updating Content
 1. Edit files locally
@@ -322,10 +326,11 @@ In your domain registrar:
 
 ---
 
-## Support
+## Support Resources
 
 - Cloudflare Docs: [developers.cloudflare.com/workers](https://developers.cloudflare.com/workers)
-- OpenAI Docs: [platform.openai.com/docs](https://platform.openai.com/docs)
+- Google AI Studio: [aistudio.google.com](https://aistudio.google.com)
+- Gemini API Docs: [ai.google.dev](https://ai.google.dev)
 - GitHub Pages: [docs.github.com/pages](https://docs.github.com/pages)
 
 ---
@@ -333,12 +338,13 @@ In your domain registrar:
 ## Summary
 
 You now have:
-- ✅ Static site on GitHub Pages (free)
-- ✅ Cloudflare Worker with OpenAI integration (free hosting)
-- ✅ IP-based rate limiting (5 playbooks/month per user)
-- ✅ Cost control (~$15/month)
-- ✅ Professional dark mode design
-- ✅ Markdown export functionality
+- Static site on GitHub Pages (free)
+- Cloudflare Worker with Gemini integration (free)
+- IP-based rate limiting (5 playbooks/month per user)
+- Zero ongoing costs
+- Professional dark mode design
+- Markdown export functionality
 
-**Total monthly cost:** ~$15 (OpenAI only)
-**Estimated users served:** 50-60 users/month
+**Total monthly cost:** $0 (completely free!)
+**Daily capacity:** 1,500 playbook generations
+**Estimated users supported:** 300+ per day
