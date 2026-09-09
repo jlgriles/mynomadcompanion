@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyNomadCompanion - AI Trip Playbooks for Digital Nomads</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMLSBWKS88"></script>
+    <!-- 1. Consent default — MUST be first, before gtag.js loads -->
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-EMLSBWKS88');
+    gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+    });
     </script>
+
+    <!-- 2. GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMLSBWKS88"></script>
+    <script>
+    gtag('js', new Date());
+    gtag('config', 'G-EMLSBWKS88', { anonymize_ip: true });
+    </script>
+
+    <!-- 3. Consent banner (after the above, order relative to other page scripts doesn't matter) -->
+    <script src="/cookie-consent.js" defer></script>    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Courier+Prime:wght@400;700&family=VT323&display=swap" rel="stylesheet">
